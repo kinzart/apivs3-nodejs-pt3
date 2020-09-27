@@ -120,36 +120,3 @@ exports.createName = async (req, res) => { //call method post
 
 
 
-
-
-npm install
-//first thing to do
-
-
-
-1- LETS TO PUT THE "UPDATE" IN OUR BUSINESS RULES
- repositories/name-repository.js
-
-exports.updateName = async (id, data) => {
-  await Name.findByIdAndUpdate(id, {
-    $set: data
-  });
-};
-
-2- import function update to controller
-  src/controllers/name-controller.js
-
-  exports.updateName = async (req, res) => {
-  try {
-    await repository.updateName(req.params.id, req.body);
-    res.status(200).send({
-      message: 'Ok, was updated with successful'
-    });
-  } catch (e) {
-    res.status(500).send({message: 'Failed to update'});
-  }
-};
-
-
-3- In name-routes.js 
-router.put('/:id', nameController.updateName);
